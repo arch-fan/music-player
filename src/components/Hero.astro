@@ -1,0 +1,30 @@
+---
+import NewJeans from "@/assets/img/newjeans.png";
+import Share from "./Share";
+import Play from "./player/Play";
+import { Image } from "astro:assets";
+import Followers from "@/components/Followers.astro";
+---
+
+<section class="w-full bg-gradient-to-b from-neutral-500 to-green-800">
+  <div class="px-2 max-w-6xl m-auto w-full min-h-[32rem] flex">
+    <div class="my-auto flex gap-8">
+      <Image
+        src={NewJeans}
+        alt="NewJeans"
+        class="h-72 w-72 rounded shadow-xl"
+      />
+      <div class="flex-1 flex flex-col">
+        <span class="text-neutral-300 text-xl">Estación actual</span>
+        <div class="flex gap-4">
+          <h1 class="font-bold text-white text-7xl">NewJeans</h1>
+          <Play client:load />
+        </div>
+        <Followers />
+        <div class="mt-auto">
+          <Share client:load />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
