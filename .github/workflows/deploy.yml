@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload the site
         uses: withastro/action@v2
+        with:
+          package-manager: pnpm@latest
 
   deploy:
     needs: build
