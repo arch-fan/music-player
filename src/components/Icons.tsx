@@ -1,4 +1,4 @@
-import type { SVGProps } from "preact/compat";
+import type { SVGProps } from "react";
 
 export function Share(props: SVGProps<SVGSVGElement>) {
   return (

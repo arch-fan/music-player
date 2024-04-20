@@ -3,12 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "preact-icons": [
-        "src/components/Share.tsx"
-      ]
+      "@/*": ["src/*"],
+      "react-icons": ["src/components/Share.tsx"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
