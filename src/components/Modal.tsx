@@ -1,14 +1,12 @@
-import type { FunctionalComponent } from "preact";
-import type { HTMLAttributes } from "preact/compat";
-import { useEffect, useRef } from "preact/hooks";
-import type { JSX } from "preact/jsx-runtime";
+import type { HTMLAttributes } from "react";
+import { useEffect, useRef } from "react";
 
 interface Props extends HTMLAttributes<HTMLDialogElement> {
   openModal: boolean;
   closeModal: () => void;
 }
 
-const Modal: FunctionalComponent<Props> = ({
+const Modal: React.FC<Props> = ({
   openModal,
   closeModal,
   children,

@@ -1,10 +1,12 @@
 ---
 import Hero from "@/components/Hero.astro";
 import Layout from "@/layouts/Layout.astro";
+import Player from "@/components/player/Player";
 ---
 
 <Layout title="Inicio" description="Pagina de inicio">
   <main class="flex flex-col">
     <Hero />
   </main>
+  <Player client:load />
 </Layout>

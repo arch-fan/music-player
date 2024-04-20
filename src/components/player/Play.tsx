@@ -1,9 +1,22 @@
-export default () => {
+import { Play as PlayIcon, Pause as PauseIcon } from "../Icons";
+import { usePlayer } from "./track.store";
+
+const Play = () => {
+  const isPlaying = usePlayer((state) => state.isPlaying);
+  const setIsPlaying = usePlayer((state) => state.setIsPlaying);
+
   return (
-    <button class="p-1 rounded-full bg-brand-400 h-full w-auto">
-      <svg class="h-full w-auto text-white" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M8 5.14v14l11-7z"></path>
-      </svg>
+    <button
+      onClick={() => setIsPlaying(!isPlaying)}
+      className="p-1 rounded-full bg-brand-400 h-auto w-auto"
+    >
+      {isPlaying ? (
+        <PauseIcon className="h-full w-auto text-white" />
+      ) : (
+        <PlayIcon className="h-full w-auto text-white" />
+      )}
     </button>
   );
 };
+
+export default Play;

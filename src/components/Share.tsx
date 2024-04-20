@@ -1,5 +1,5 @@
 import { Share } from "./Icons";
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import { Facebook } from "./Icons";
 import Modal from "./Modal";
 

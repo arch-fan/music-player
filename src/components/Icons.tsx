@@ -21,3 +21,19 @@ export function Facebook(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function Play(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <path fill="currentColor" d="M8 5.14v14l11-7z"></path>
+    </svg>
+  );
+}
+
+export function Pause(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <path fill="currentColor" d="M14 19h4V5h-4M6 19h4V5H6z"></path>
+    </svg>
+  );
+}
