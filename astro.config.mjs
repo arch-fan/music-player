@@ -6,5 +6,7 @@ import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon(), preact()]
+  integrations: [tailwind(), icon(), preact()],
+  site: "https://arch-fan.github.io",
+  base: "music-player",
 });
