@@ -1,15 +1,16 @@
+import type { Track } from "@/data/playlist";
 import { create } from "zustand";
 
-interface Track {
-  path: string | null;
+interface TrackState {
+  currentTrack: Track | null;
   isPlaying: boolean;
-  setPath: (path: string) => void;
+  setTrack: (track: Track) => void;
   setIsPlaying: (isPlaying: boolean) => void;
 }
 
-export const usePlayer = create<Track>((set) => ({
-  path: null,
+export const usePlayer = create<TrackState>((set) => ({
+  currentTrack: null,
   isPlaying: false,
-  setPath: (path: string) => set(() => ({ path })),
-  setIsPlaying: (isPlaying: boolean) => set(() => ({ isPlaying })),
+  setTrack: (track) => set({ currentTrack: track }),
+  setIsPlaying: (isPlaying) => set({ isPlaying }),
 }));
