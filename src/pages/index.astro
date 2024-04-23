@@ -2,11 +2,16 @@
 import Hero from "@/components/Hero.astro";
 import Layout from "@/layouts/Layout.astro";
 import Player from "@/components/player/Player";
+import Playlist from "@/components/player/Playlist";
 ---
 
 <Layout title="Inicio" description="Pagina de inicio">
   <main class="flex flex-col">
     <Hero />
+    <section class="px-2 mt-8 max-w-6xl m-auto w-full flex flex-col gap-8">
+      <h2 class="font-bold text-2xl">Escucha las canciones de la estación:</h2>
+      <Playlist client:load />
+    </section>
   </main>
-  <Player client:load />
+  <Player client:idle />
 </Layout>

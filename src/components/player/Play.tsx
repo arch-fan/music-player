@@ -1,21 +1,18 @@
+import type { HTMLAttributes } from "react";
 import { Play as PlayIcon, Pause as PauseIcon } from "../Icons";
 import { usePlayer } from "./track.store";
-import { tracks, type Track } from "@/data/playlist";
 
-const Play = () => {
+interface Props extends HTMLAttributes<HTMLButtonElement> {}
+
+const Play: React.FC<Props> = ({ className, onClick, ...props }) => {
   const isPlaying = usePlayer((state) => state.isPlaying);
-  const setIsPlaying = usePlayer((state) => state.setIsPlaying);
-  const setTrack = usePlayer((state) => state.setTrack);
-
-  function playTrack(track: Track) {
-    setIsPlaying(true);
-    setTrack(track);
-  }
+  const setFirstTrack = usePlayer((state) => state.setFirstTrack);
 
   return (
     <button
-      onClick={() => playTrack(tracks[0])}
-      className="p-1 rounded-full bg-brand-400 h-auto w-auto"
+      onClick={setFirstTrack}
+      className={`p-1 rounded-full bg-brand-400 ${className ? className : ""}`}
+      {...props}
     >
       {isPlaying ? (
         <PauseIcon className="h-full w-auto text-white" />

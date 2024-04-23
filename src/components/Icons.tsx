@@ -37,3 +37,19 @@ export function Pause(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function PreviousTitle(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <path fill="currentColor" d="M20 5v14l-7-7M6 5v14H4V5m9 0v14l-7-7"></path>
+    </svg>
+  );
+}
+
+export function NextTitle(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" {...props}>
+      <path fill="currentColor" d="M4 5v14l7-7m7-7v14h2V5m-9 0v14l7-7"></path>
+    </svg>
+  );
+}
