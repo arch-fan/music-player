@@ -13,7 +13,15 @@ export default function Speed() {
 
     if (audioElement.current)
       audioElement.current.addEventListener("ratechange", updatePlaybackRate);
-  });
+
+    return () => {
+      if (audioElement.current)
+        audioElement.current.removeEventListener(
+          "ratechange",
+          updatePlaybackRate
+        );
+    };
+  }, []);
 
   return (
     audioElement.current && (

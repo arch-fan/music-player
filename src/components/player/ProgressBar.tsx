@@ -34,7 +34,11 @@ export default function ProgressBar() {
         <input
           type="range"
           min={0}
-          max={audioElement.current.duration}
+          max={
+            isNaN(audioElement.current.duration)
+              ? 0
+              : audioElement.current.duration
+          }
           value={currentTime}
           onChange={(e) => {
             if (audioElement.current)

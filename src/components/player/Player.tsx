@@ -1,27 +1,35 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { usePlayer } from "./track.store";
 import Controls from "./Controls";
 
 const Player: React.FC = () => {
-  const { currentTrack, isPlaying, audioElement, setIsPlaying, setNextSong } =
+  const { currentTrack, audioElement, setNextSong, setIsPlaying, isPlaying } =
     usePlayer((state) => ({
       currentTrack: state.currentTrack,
       isPlaying: state.isPlaying,
       audioElement: state.audioElement,
-      setIsPlaying: state.setIsPlaying,
       setNextSong: state.setNextSong,
+      setIsPlaying: state.setIsPlaying,
     }));
 
   useEffect(() => {
+    const keyEvents = (e: KeyboardEvent) => {
+      if (e.code === "Space") setIsPlaying(!isPlaying);
+    };
+
+    window.addEventListener("keydown", keyEvents);
+
     if (currentTrack && audioElement.current) {
       audioElement.current.play();
-
       audioElement.current.addEventListener("ended", setNextSong);
     }
 
     return () => {
-      if (audioElement.current)
+      window.removeEventListener("keydown", keyEvents);
+
+      if (audioElement.current) {
         audioElement.current.removeEventListener("ended", setNextSong);
+      }
     };
   }, []);
 
@@ -34,11 +42,8 @@ const Player: React.FC = () => {
 
   useEffect(() => {
     if (audioElement.current)
-      if (isPlaying) {
-        audioElement.current.play();
-      } else {
-        audioElement.current.pause();
-      }
+      if (isPlaying) audioElement.current.play();
+      else audioElement.current.pause();
   }, [isPlaying]);
 
   return (

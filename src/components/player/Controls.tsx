@@ -9,7 +9,6 @@ export default function Controls() {
     isPlaying,
     setIsPlaying,
     setPreviousSong,
-    currentTrack,
     audioElement,
     setNextSong,
   } = usePlayer((state) => ({
@@ -17,7 +16,6 @@ export default function Controls() {
     setIsPlaying: state.setIsPlaying,
     setPreviousSong: state.setPreviousSong,
     setNextSong: state.setNextSong,
-    currentTrack: state.currentTrack,
     audioElement: state.audioElement,
   }));
 

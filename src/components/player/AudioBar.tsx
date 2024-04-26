@@ -24,7 +24,7 @@ export default function AudioBar() {
       if (audioElement.current)
         audioElement.current.removeEventListener("volumechange", updateVolume);
     };
-  });
+  }, []);
 
   return (
     <input
