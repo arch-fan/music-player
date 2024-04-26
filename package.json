@@ -7,16 +7,17 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "upgrade": "pnpx @astrojs/upgrade"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/react": "^3.3.0",
+    "@astrojs/react": "^3.3.1",
     "@astrojs/tailwind": "^5.1.0",
     "@iconify-json/mdi": "^1.1.66",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
-    "astro": "^4.6.3",
+    "astro": "^4.7.0",
     "astro-icon": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
