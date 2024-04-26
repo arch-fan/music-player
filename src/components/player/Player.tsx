@@ -13,20 +13,12 @@ const Player: React.FC = () => {
     }));
 
   useEffect(() => {
-    const keyEvents = (e: KeyboardEvent) => {
-      if (e.code === "Space") setIsPlaying(!isPlaying);
-    };
-
-    window.addEventListener("keydown", keyEvents);
-
     if (currentTrack && audioElement.current) {
       audioElement.current.play();
       audioElement.current.addEventListener("ended", setNextSong);
     }
 
     return () => {
-      window.removeEventListener("keydown", keyEvents);
-
       if (audioElement.current) {
         audioElement.current.removeEventListener("ended", setNextSong);
       }
@@ -34,10 +26,15 @@ const Player: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (currentTrack && audioElement.current) {
-      audioElement.current.play();
-      setIsPlaying(true);
-    }
+    const keyEvents = (e: KeyboardEvent) => {
+      if (e.code === "Space") setIsPlaying(!isPlaying);
+    };
+
+    window.addEventListener("keydown", keyEvents);
+  }, []);
+
+  useEffect(() => {
+    if (currentTrack && audioElement.current) setIsPlaying(true);
   }, [currentTrack]);
 
   useEffect(() => {
