@@ -27,7 +27,10 @@ const Player: React.FC = () => {
 
   useEffect(() => {
     const keyEvents = (e: KeyboardEvent) => {
-      if (e.code === "Space") setIsPlaying(!isPlaying);
+      if (e.code === "Space") {
+        setIsPlaying(!isPlaying);
+        e.preventDefault();
+      }
     };
 
     window.addEventListener("keydown", keyEvents);

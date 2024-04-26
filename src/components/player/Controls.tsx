@@ -22,7 +22,7 @@ export default function Controls() {
   return (
     audioElement.current && (
       <div className="flex flex-col">
-        <div className="flex gap-4">
+        <div className="flex gap-4 [&_button]:outline-none">
           <button onClick={setPreviousSong} className="h-6 w-6">
             <PreviousTitle />
           </button>
