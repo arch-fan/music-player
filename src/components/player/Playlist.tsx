@@ -8,15 +8,15 @@ export default function Playlist() {
   return (
     <div className="grid grid-cols-1 gap-4">
       {tracks.map((track) => (
-        <div className="flex" key={track.name}>
+        <div className="flex h-12 gap-2" key={track.name}>
           <button
             onClick={() => setTrack(track)}
-            className="border-black border h-8 w-auto p-1 rounded-full"
+            className="border-black border hover:bg-slate-200 transition-all h-full w-auto p-1 rounded-full"
           >
             <Play className="w-full h-full" />
           </button>
-          <img src={track.cover as string} className="h-8 w-8" />
-          <p>{track.name}</p>
+          <img src={track.cover as string} className="h-full w-auto rounded" />
+          <h3 className="font-bold text-xl">{track.name}</h3>
         </div>
       ))}
     </div>

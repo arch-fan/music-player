@@ -3,46 +3,58 @@ import { usePlayer } from "./track.store";
 import Controls from "./Controls";
 
 const Player: React.FC = () => {
-  const { currentTrack, isPlaying, audioElement, setIsPlaying } = usePlayer(
-    (state) => ({
+  const { currentTrack, isPlaying, audioElement, setIsPlaying, setNextSong } =
+    usePlayer((state) => ({
       currentTrack: state.currentTrack,
       isPlaying: state.isPlaying,
       audioElement: state.audioElement,
       setIsPlaying: state.setIsPlaying,
-    })
-  );
+      setNextSong: state.setNextSong,
+    }));
 
   useEffect(() => {
-    if (currentTrack != null && audioElement.current != null) {
+    if (currentTrack && audioElement.current) {
       audioElement.current.play();
+
+      audioElement.current.addEventListener("ended", setNextSong);
     }
-  }, [audioElement]);
+
+    return () => {
+      if (audioElement.current)
+        audioElement.current.removeEventListener("ended", setNextSong);
+    };
+  }, []);
 
   useEffect(() => {
-    if (isPlaying) {
-      audioElement.current?.play();
-    } else {
-      audioElement.current?.pause();
-    }
-  }, [isPlaying]);
-
-  useEffect(() => {
-    if (currentTrack) {
+    if (currentTrack && audioElement.current) {
+      audioElement.current.play();
       setIsPlaying(true);
     }
   }, [currentTrack]);
 
-  if (currentTrack) {
-    return (
-      <div className="fixed bottom-0 bg-brand bg-opacity-70 left-0 w-full h-16">
-        <div className="mx-auto flex w-fit h-full justify-center items-center p-1 gap-4">
-          <img src={currentTrack?.cover as string} className="h-full w-auto" />
+  useEffect(() => {
+    if (audioElement.current)
+      if (isPlaying) {
+        audioElement.current.play();
+      } else {
+        audioElement.current.pause();
+      }
+  }, [isPlaying]);
+
+  return (
+    currentTrack && (
+      <div className="fixed bottom-0 bg-brand bg-opacity-70 left-0 w-full h-20 p-2">
+        <div className="mx-auto gap-2 flex w-fit h-full justify-center items-center">
+          <img
+            src={currentTrack.cover as string}
+            className="w-auto h-full rounded"
+          />
           <Controls />
         </div>
         <audio ref={audioElement} src={currentTrack.path}></audio>
       </div>
-    );
-  }
+    )
+  );
 };
 
 export default Player;
