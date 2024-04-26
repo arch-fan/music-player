@@ -25,7 +25,7 @@ const Player: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const keyEvents = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         setIsPlaying(!isPlaying);
@@ -34,7 +34,7 @@ const Player: React.FC = () => {
     };
 
     window.addEventListener("keydown", keyEvents);
-  }, []);
+  }, []); */
 
   useEffect(() => {
     if (currentTrack && audioElement.current) setIsPlaying(true);
