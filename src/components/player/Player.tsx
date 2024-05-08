@@ -1,65 +1,100 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { usePlayer } from "./track.store";
 import Controls from "./Controls";
 
 const Player: React.FC = () => {
-  const { currentTrack, audioElement, setNextSong, setIsPlaying, isPlaying } =
-    usePlayer((state) => ({
-      currentTrack: state.currentTrack,
-      isPlaying: state.isPlaying,
-      audioElement: state.audioElement,
-      setNextSong: state.setNextSong,
-      setIsPlaying: state.setIsPlaying,
-    }));
+	const { currentTrack, audioElement, setNextSong, setIsPlaying, isPlaying } =
+		usePlayer((state) => ({
+			currentTrack: state.currentTrack,
+			isPlaying: state.isPlaying,
+			audioElement: state.audioElement,
+			setNextSong: state.setNextSong,
+			setIsPlaying: state.setIsPlaying,
+		}));
 
-  useEffect(() => {
-    if (currentTrack && audioElement.current) {
-      audioElement.current.play();
-      audioElement.current.addEventListener("ended", setNextSong);
-    }
+	const handlePlay = useCallback(() => setIsPlaying(true), [setIsPlaying]);
 
-    return () => {
-      if (audioElement.current) {
-        audioElement.current.removeEventListener("ended", setNextSong);
-      }
-    };
-  }, []);
+	const handlePause = useCallback(() => setIsPlaying(false), [setIsPlaying]);
 
-  /* useEffect(() => {
-    const keyEvents = (e: KeyboardEvent) => {
-      if (e.code === "Space") {
-        setIsPlaying(!isPlaying);
-        e.preventDefault();
-      }
-    };
+	const keyHandler = useCallback(
+		(e: KeyboardEvent) => {
+			e.preventDefault();
+			if (e.key === " ") setIsPlaying(!isPlaying);
+		},
+		[setIsPlaying, isPlaying],
+	);
 
-    window.addEventListener("keydown", keyEvents);
-  }, []); */
+	/**
+	 * Sincroniza el estado isPlaying con el estado del audio
+	 * dandole el valor del elemento
+	 *
+	 * (Quiza no sea necesario si se manejan todos los posibles eventos
+	 * que puedan parar o reanudar la musica)
+	 */
+	useEffect(() => {
+		if (audioElement.current) {
+			const audio = audioElement.current;
 
-  useEffect(() => {
-    if (currentTrack && audioElement.current) setIsPlaying(true);
-  }, [currentTrack]);
+			audio.addEventListener("play", handlePlay);
+			audio.addEventListener("pause", handlePause);
 
-  useEffect(() => {
-    if (audioElement.current)
-      if (isPlaying) audioElement.current.play();
-      else audioElement.current.pause();
-  }, [isPlaying]);
+			return () => {
+				audio.removeEventListener("play", handlePlay);
+				audio.removeEventListener("pause", handlePause);
+			};
+		}
+	}, [audioElement.current, handlePlay, handlePause]);
 
-  return (
-    currentTrack && (
-      <div className="fixed bottom-0 bg-brand bg-opacity-70 left-0 w-full h-20 p-2">
-        <div className="mx-auto gap-2 flex w-fit h-full justify-center items-center">
-          <img
-            src={currentTrack.cover as string}
-            className="w-auto h-full rounded"
-          />
-          <Controls />
-        </div>
-        <audio ref={audioElement} src={currentTrack.path}></audio>
-      </div>
-    )
-  );
+	/**
+	 * Sincroniza el estado isPlaying con el estado del audio
+	 * para que al cambiar el estado se actualice con el elemento
+	 */
+	useEffect(() => {
+		if (audioElement.current) {
+			const audio = audioElement.current;
+			isPlaying ? audio.play() : audio.pause();
+		}
+	}, [audioElement.current, isPlaying]);
+
+	/**
+	 * Encargado de cambiar de cancion cuando termina
+	 */
+	useEffect(() => {
+		if (audioElement.current) {
+			audioElement.current.addEventListener("ended", setNextSong);
+
+			return () => {
+				if (audioElement.current)
+					audioElement.current.removeEventListener("ended", setNextSong);
+			};
+		}
+	}, [audioElement.current, setNextSong]);
+
+	/**
+	 * Añadimos un listener para detectar los
+	 * eventos de pulsacion y ejecutar ciertas acciones
+	 */
+	useEffect(() => {
+		window.addEventListener("keydown", keyHandler);
+
+		return () => window.removeEventListener("keydown", keyHandler);
+	}, [keyHandler]);
+
+	return (
+		currentTrack && (
+			<div className="fixed bottom-0 bg-brand bg-opacity-70 left-0 w-full h-20 p-2">
+				<div className="mx-auto gap-2 flex w-fit h-full justify-center items-center">
+					<img
+						src={currentTrack.cover as string}
+						className="w-auto h-full rounded"
+						alt={currentTrack.name}
+					/>
+					<Controls />
+				</div>
+				<audio ref={audioElement} src={currentTrack.path} />
+			</div>
+		)
+	);
 };
 
 export default Player;

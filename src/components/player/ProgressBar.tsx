@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePlayer } from "./track.store";
-
-const formatTime = (timeInSeconds: number) => {
-  const minutes = Math.floor(timeInSeconds / 60);
-  const seconds = Math.floor(timeInSeconds % 60);
-  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-};
+import { formatTime } from "@/utils/time";
 
 export default function ProgressBar() {
   const audioElement = usePlayer((state) => state.audioElement);
