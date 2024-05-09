@@ -62,7 +62,7 @@ export default function Playlist() {
 					</div>
 					<a
 						className="text-red-600 group-hover:opacity-100 duration-500 opacity-0 ml-auto self-center rounded hover:scale-125 transition-all"
-						href="#"
+						href={track.video}
 					>
 						<Youtube onClick={(e) => e.stopPropagation()} className="size-8" />
 					</a>
