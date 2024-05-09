@@ -7,3 +7,7 @@ TODO:
 - [ ] Theme change???
 - [ ] dynamic web
 - [ ] "loggin"
+- [ ] Link to yt video
+- [ ] Improve volume bar
+- [ ] Loop
+- [ ] Advance seconds

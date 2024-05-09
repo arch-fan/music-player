@@ -7,7 +7,7 @@ import Followers from "@/components/Followers.astro";
 ---
 
 <section
-  class="w-full bg-gradient-to-b flex min-h-[32rem] from-neutral-500 to-green-800"
+  class="w-full p-4 bg-gradient-to-b flex min-h-[32rem] from-neutral-500 to-green-800"
 >
   <div
     class="max-w-6xl w-full lg:items-stretch items-center min-h-72 m-auto flex flex-col lg:flex-row gap-4 lg:gap-8"
@@ -26,6 +26,12 @@ import Followers from "@/components/Followers.astro";
         <Play className="size-16 lg:size-20" client:load />
       </div>
       <Followers />
+      <p class="text-neutral-300 text-balance line-clamp-4">
+        NewJeans (en hangul, 뉴진스; romanización revisada del coreano,
+        nyujinseu) es un grupo femenino surcoreano formado por ADOR, agencia
+        subsidiaria de HYBE Corporation. El grupo está conformado por cinco
+        miembros: Minji, Hanni, Danielle, Haerin y Hyein.
+      </p>
       <div class="mt-8 lg:mt-auto flex">
         <Share client:load />
       </div>
