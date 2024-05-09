@@ -8,11 +8,16 @@ interface TrackState {
 	playlist: Track[];
 	isPlaying: boolean;
 	audioElement: React.RefObject<HTMLAudioElement>;
+	isLoop: boolean;
+	isRandom: boolean;
+	setIsLoop: (isLoop: boolean) => void;
+	setIsRandom: (isRandom: boolean) => void;
 	setTrack: (track: Track) => void;
 	setIsPlaying: (isPlaying: boolean) => void;
 	setPreviousSong: () => void;
 	setFirstTrack: () => void;
 	setNextSong: () => void;
+	setTrackByIndex: (i: number) => void;
 }
 
 export const usePlayer = create<TrackState>((set) => ({
@@ -20,6 +25,10 @@ export const usePlayer = create<TrackState>((set) => ({
 	isPlaying: false,
 	playlist: tracks,
 	audioElement: createRef(),
+	isLoop: false,
+	isRandom: false,
+	setIsLoop: (isLoop) => set({ isLoop }),
+	setIsRandom: (isRandom) => set({ isRandom }),
 	setTrack: (track) => set({ currentTrack: track }),
 	setIsPlaying: (isPlaying) => set({ isPlaying }),
 	setPreviousSong: () =>
@@ -45,4 +54,5 @@ export const usePlayer = create<TrackState>((set) => ({
 			return state;
 		}),
 	setFirstTrack: () => set({ currentTrack: tracks[0] }),
+	setTrackByIndex: (i) => set({ currentTrack: tracks[i] }),
 }));

@@ -9,5 +9,5 @@ TODO:
 - [x] "loggin"
 - [x] Link to yt video
 - [x] Improve volume bar
-- [ ] Loop
+- [x] Loop
 - [ ] Advance seconds
