@@ -43,10 +43,10 @@ export default function Playlist() {
 									alt="Audio playing"
 								/>
 							) : (
-								<Pause />
+								<Pause className="w-auto h-auto" />
 							)
 						) : (
-							<Play />
+							<Play className="w-auto h-auto" />
 						)}
 					</div>
 					<img

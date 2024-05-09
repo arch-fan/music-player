@@ -59,7 +59,7 @@ export default function Controls({ className }: { className?: string }) {
 					className ?? ""
 				}`}
 			>
-				<div className="flex lg:gap-6 justify-center">
+				<div className="flex gap-2 lg:gap-6 justify-center">
 					<button onClick={() => setIsRandom(!isRandom)}>
 						<Random
 							className={`size-5 transition-all ${
