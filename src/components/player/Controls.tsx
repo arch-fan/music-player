@@ -4,7 +4,7 @@ import { usePlayer } from "./track.store";
 import ProgressBar from "./ProgressBar";
 import Speed from "./Speed";
 
-export default function Controls() {
+export default function Controls({ className }: { className?: string }) {
 	const {
 		isPlaying,
 		setIsPlaying,
@@ -21,21 +21,28 @@ export default function Controls() {
 
 	return (
 		audioElement.current && (
-			<div className="flex flex-col">
-				<div className="flex gap-4 [&_button]:outline">
-					<button onClick={setPreviousSong} className="h-6 w-6">
+			<div
+				className={`flex flex-col justify-center lg:justify-between ${
+					className ?? ""
+				}`}
+			>
+				<div className="flex lg:gap-4 justify-between">
+					<button onClick={setPreviousSong} className="size-8 lg:size-6">
 						<PreviousTitle />
 					</button>
-					<button className="h-6 w-6" onClick={() => setIsPlaying(!isPlaying)}>
+					<button
+						className="size-8 lg:size-6"
+						onClick={() => setIsPlaying(!isPlaying)}
+					>
 						{isPlaying ? <Pause /> : <Play />}
 					</button>
-					<button className="h-6 w-6" onClick={setNextSong}>
+					<button className="size-8 lg:size-6" onClick={setNextSong}>
 						<NextTitle />
 					</button>
-					<AudioBar />
 				</div>
-				<ProgressBar />
-				<Speed />
+				<div className="lg:block hidden">
+					<ProgressBar />
+				</div>
 			</div>
 		)
 	);

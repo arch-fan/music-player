@@ -5,13 +5,16 @@ import { formatTime } from "@/utils/time";
 
 export default function Playlist() {
 	const setTrack = usePlayer((state) => state.setTrack);
-	const setIsPlaying = usePlayer((state) => state.setIsPlaying);
 	const currentTrack = usePlayer((state) => state.currentTrack);
 	const isPlaying = usePlayer((state) => state.isPlaying);
+	const setIsPlaying = usePlayer((state) => state.setIsPlaying);
 
 	const handlePlay = (track: Track) => {
-		setTrack(track);
-		setIsPlaying(true);
+		if (track === currentTrack) {
+			setIsPlaying(!isPlaying);
+		} else {
+			setTrack(track);
+		}
 	};
 
 	return (
@@ -20,12 +23,12 @@ export default function Playlist() {
 				<button
 					onClick={() => handlePlay(track)}
 					className={`
-            flex h-16 gap-2 rounded p-2 relative overflow-hidden
-            before:content-[''] before:absolute before:h-full before:w-1
-            before:bg-brand
-            before:top-0 before:left-0
-            hover:bg-neutral-300 transition-all
-            ${track === currentTrack ? "bg-neutral-200" : ""}`}
+            			flex h-16 gap-2 rounded p-2 relative overflow-hidden
+            			before:content-[''] before:absolute before:h-full before:w-1
+            			before:bg-brand before:top-0 before:left-0
+            			hover:bg-white/30 transition-all duration-500
+            			${track === currentTrack ? "bg-white/40 shadow-xl" : ""}
+					`}
 					key={track.name}
 					type="button"
 				>
