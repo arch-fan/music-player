@@ -1,17 +1,40 @@
 ---
-import Hero from "@/components/Hero.astro";
 import Layout from "@/layouts/Layout.astro";
-import Player from "@/components/player/Player";
-import Playlist from "@/components/player/Playlist";
+import { users } from "@/data/users";
+import { Image } from "astro:assets";
 ---
 
-<Layout title="Inicio" description="Pagina de inicio">
-  <main class="flex flex-col pb-8 bg-gradient-to-b from-[#ccd8f1] to-[#e7edf7]">
-    <Hero />
-    <section class="px-2 mt-8 max-w-6xl m-auto w-full flex flex-col gap-8">
-      <h2 class="font-bold text-2xl">Escucha las canciones de la estación:</h2>
-      <Playlist client:load />
-    </section>
-  </main>
-  <Player client:idle />
+<Layout title="Iniciar sesion" description="Iniciar sesion">
+  <div class="w-screen h-screen p-2 flex bg-neutral-200">
+    <main
+      class="max-w-xl shadow-xl flex flex-col gap-8 p-4 w-full m-auto rounded bg-white"
+    >
+      <h1 class="text-center font-bold text-3xl">Iniciar sesion</h1>
+      <div class="flex flex-col gap-4">
+        {
+          Object.keys(users).map((user) => (
+            <a
+              class="rounded-full hover:bg-neutral-200 transition-all border p-2 items-center flex gap-2 w-full"
+              href={`/music-player/station?username=${user}`}
+            >
+              <Image
+                src={users[user]}
+                alt={user}
+                width={72}
+                height={72}
+                class="rounded-full aspect-square object-cover"
+              />
+              <h2 class="font-bold text-xl">{user}</h2>
+            </a>
+          ))
+        }
+      </div>
+      <a
+        class="border text-center rounded-full p-2 hover:bg-neutral-200 transition-all"
+        href="/music-player/station"
+      >
+        O como invitado
+      </a>
+    </main>
+  </div>
 </Layout>

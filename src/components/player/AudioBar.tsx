@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { usePlayer } from "./track.store";
 
-export default function AudioBar() {
+interface Props {
+	className?: string;
+}
+
+export default function AudioBar({ className }: Props) {
 	const audioElement = usePlayer((state) => state.audioElement);
 
 	const [volume, setVolume] = useState(
@@ -18,6 +22,7 @@ export default function AudioBar() {
 	return (
 		<input
 			type="range"
+			className={className}
 			min={0}
 			max={100}
 			width={100}

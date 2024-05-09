@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { usePlayer } from "./track.store";
 
-export default function Speed() {
+export default function Speed({ className }: { className?: string }) {
 	const [playbackRate, setPlaybackRate] = useState(1);
 	const audioElement = usePlayer((state) => state.audioElement);
 	const currentTrack = usePlayer((state) => state.currentTrack);
@@ -15,6 +15,7 @@ export default function Speed() {
 	return (
 		audioElement.current && (
 			<select
+				className={className}
 				value={playbackRate}
 				onChange={(e) => setPlaybackRate(Number(e.target.value))}
 			>

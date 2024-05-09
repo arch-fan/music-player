@@ -2,6 +2,7 @@ import { Pause, Play } from "../Icons";
 import { tracks, type Track } from "@/data/playlist";
 import { usePlayer } from "./track.store";
 import { formatTime } from "@/utils/time";
+import Lyrics from "./Lyrics";
 
 export default function Playlist() {
 	const setTrack = usePlayer((state) => state.setTrack);
@@ -23,9 +24,10 @@ export default function Playlist() {
 				<button
 					onClick={() => handlePlay(track)}
 					className={`
-            			flex h-16 gap-2 rounded p-2 relative overflow-hidden
+            			flex h-16 gap-2 rounded p-2 relative
             			before:content-[''] before:absolute before:h-full before:w-1
             			before:bg-brand before:top-0 before:left-0
+						before:rounded-tl before:rounded-bl
             			hover:bg-white/30 transition-all duration-500
             			${track === currentTrack ? "bg-white/40 shadow-xl" : ""}
 					`}

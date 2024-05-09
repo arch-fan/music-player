@@ -26,7 +26,7 @@ export default function Controls({ className }: { className?: string }) {
 					className ?? ""
 				}`}
 			>
-				<div className="flex lg:gap-4 justify-between">
+				<div className="flex lg:gap-4 justify-center">
 					<button onClick={setPreviousSong} className="size-8 lg:size-6">
 						<PreviousTitle />
 					</button>

@@ -1,3 +1,7 @@
+---
+import Profile from "./Profile";
+---
+
 <header class="sticky w-full top-0 left-0 z-50 bg-brand text-white shadow-xl">
   <div class="max-w-6xl px-2 m-auto flex justify-between items-center h-16">
     <span class="text-xl font-bold font-mono">Player.io</span>
@@ -6,13 +10,6 @@
       <a href="#">Explorar Estaciones</a>
       <a href="#">Mis Estaciones</a>
     </nav>
-    <div>
-      <input
-        type="search"
-        placeholder="Artista o Género"
-        class="p-1 rounded min-w-0"
-      />
-      <button>D</button>
-    </div>
+    <Profile client:only="react" />
   </div>
 </header>

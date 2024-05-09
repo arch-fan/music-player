@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePlayer } from "./track.store";
 import { formatTime } from "@/utils/time";
+import { Loading } from "../Icons";
 
 export default function ProgressBar({ className }: { className?: string }) {
 	const audioElement = usePlayer((state) => state.audioElement);

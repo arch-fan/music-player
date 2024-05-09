@@ -1,8 +1,10 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { usePlayer } from "./track.store";
 import Controls from "./Controls";
 import styles from "./Player.module.css";
 import AudioBar from "./AudioBar";
+import Speed from "./Speed";
+import Lyrics from "./Lyrics";
 
 const Player: React.FC = () => {
 	const { currentTrack, audioElement, setNextSong, setIsPlaying, isPlaying } =
@@ -68,8 +70,12 @@ const Player: React.FC = () => {
 						</div>
 					</div>
 					<Controls />
-					<div className="hidden lg:block">
-						<AudioBar />
+					<div className="hidden lg:flex flex-col items-center justify-between">
+						<AudioBar className="w-full" />
+						<div className="grid grid-flow-col gap-2 w-full">
+							<Lyrics track={currentTrack} />
+							<Speed className="border border-neutral-500 rounded h-full" />
+						</div>
 					</div>
 				</div>
 				<audio

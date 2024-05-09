@@ -15,7 +15,8 @@
 			},
 			"a11y": {
 				"useMediaCaption": "off",
-				"useButtonType": "off"
+				"useButtonType": "off",
+				"noSvgWithoutTitle":"off"
 			}
 		}
 	}
