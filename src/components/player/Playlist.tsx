@@ -2,7 +2,7 @@ import { Pause, Play } from "../Icons";
 import { tracks, type Track } from "@/data/playlist";
 import { usePlayer } from "./track.store";
 import { formatTime } from "@/utils/time";
-import Lyrics from "./Lyrics";
+import { Youtube } from "../Icons";
 
 export default function Playlist() {
 	const setTrack = usePlayer((state) => state.setTrack);
@@ -24,7 +24,7 @@ export default function Playlist() {
 				<button
 					onClick={() => handlePlay(track)}
 					className={`
-            			flex h-16 gap-2 rounded p-2 relative
+            			flex h-16 gap-2 rounded p-2 relative group
             			before:content-[''] before:absolute before:h-full before:w-1
             			before:bg-brand before:top-0 before:left-0
 						before:rounded-tl before:rounded-bl
@@ -60,6 +60,12 @@ export default function Playlist() {
 							{formatTime(track.duration)}
 						</time>
 					</div>
+					<a
+						className="text-red-600 group-hover:opacity-100 duration-500 opacity-0 ml-auto self-center rounded hover:scale-125 transition-all"
+						href="#"
+					>
+						<Youtube onClick={(e) => e.stopPropagation()} className="size-8" />
+					</a>
 				</button>
 			))}
 		</div>

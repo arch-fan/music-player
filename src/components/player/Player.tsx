@@ -5,6 +5,7 @@ import styles from "./Player.module.css";
 import AudioBar from "./AudioBar";
 import Speed from "./Speed";
 import Lyrics from "./Lyrics";
+import { Speaker } from "../Icons";
 
 const Player: React.FC = () => {
 	const { currentTrack, audioElement, setNextSong, setIsPlaying, isPlaying } =
@@ -71,7 +72,10 @@ const Player: React.FC = () => {
 					</div>
 					<Controls />
 					<div className="hidden lg:flex flex-col items-center justify-between">
-						<AudioBar className="w-full" />
+						<div className="flex gap-4	 w-full items-center">
+							<Speaker className="size-6" />
+							<AudioBar className="w-full" />
+						</div>
 						<div className="grid grid-flow-col gap-2 w-full">
 							<Lyrics track={currentTrack} />
 							<Speed className="border border-neutral-500 rounded h-full" />

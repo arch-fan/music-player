@@ -27,7 +27,7 @@ export default function ProgressBar({ className }: { className?: string }) {
 		audioElement.current && (
 			<div className={`flex gap-1 items-center ${className ?? ""}`}>
 				<span>{formatTime(currentTime)}</span>
-				<div className="w-full group h-[6px] relative bg-neutral-500 rounded-full">
+				<div className="w-full group h-[6px] relative bg-neutral-400 rounded-full">
 					<input
 						type="range"
 						className="opacity-0 absolute w-full h-full cursor-pointer z-10"
@@ -44,13 +44,13 @@ export default function ProgressBar({ className }: { className?: string }) {
 						}}
 					/>
 					<span
-						className="absolute w-full h-full bg-brand rounded-full"
+						className="absolute w-full h-full bg-brand-500 rounded-full"
 						style={{
 							width: `${(currentTime / audioElement.current.duration) * 100}%`,
 						}}
 					/>
 					<span
-						className="w-3 h-3 bg-brand rounded-full group-hover:absolute -translate-x-1/2 -top-1/2"
+						className="size-3 bg-brand-500 rounded-full absolute opacity-0 group-hover:opacity-100 transition-opacity -translate-x-1/2 -top-1/2"
 						style={{
 							left: `${(currentTime / audioElement.current.duration) * 100}%`,
 						}}
