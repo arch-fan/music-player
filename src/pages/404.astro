@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404" description="404">
+  <div class="flex flex-col h-screen w-full items-center justify-center">
+    <h1 class="text-3xl">Aquí no hay nada...</h1>
+    <ascii-art class="lg:text-xs text-[8px] w-min"></ascii-art>
+
+    <button title="Volver" class="cursor-pointer">
+      <Icon
+        name="mdi:arrow-left"
+        class="text-accent-violet text-5xl hover:-translate-x-2 hover:scale-105 transition-transform"
+      />
+    </button>
+  </div>
+</Layout>
+
+<script>
+  const goBack = document.querySelector(
+    "button[title='Volver']"
+  ) as HTMLButtonElement;
+
+  goBack.addEventListener("click", () => {
+    window.history.back();
+  });
+</script>
+
+<script>
+  import { arts } from "../data/ascii";
+
+  class AsciiArt extends HTMLElement {
+    constructor() {
+      super();
+      this.textContent = arts[Math.floor(Math.random() * arts.length)];
+    }
+  }
+
+  customElements.define("ascii-art", AsciiArt);
+</script>
