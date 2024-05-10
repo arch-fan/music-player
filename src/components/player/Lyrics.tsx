@@ -61,12 +61,14 @@ const Lyrics: React.FC<Props> = ({ className, track }) => {
 		>
 			<Music />
 			<span>Lyrics</span>
-			<Modal openModal={show} closeModal={handleClose} className="rounded">
-				<div className="flex max-w-xl p-2 overflow-y-auto w-full max-h-96">
-					<p className="text-3xl text-start whitespace-pre-wrap">
-						{lyrics?.[track.name] ?? "No lyrics available"}
-					</p>
-				</div>
+			<Modal
+				openModal={show}
+				closeModal={handleClose}
+				className="m-0 p-12 h-screen w-screen backdrop-blur max-w-none max-h-none bg-black/50"
+			>
+				<p className="whitespace-pre text-5xl font-bold text-white text-start">
+					{lyrics?.[track.name]}
+				</p>
 			</Modal>
 		</button>
 	);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { usePlayer } from "./track.store";
-import { Speaker } from "../Icons";
 
 interface Props {
 	className?: string;
