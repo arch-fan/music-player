@@ -2,6 +2,7 @@ import type { Track } from "@/data/playlist";
 import { create } from "zustand";
 import { tracks } from "@/data/playlist";
 import { createRef } from "react";
+import shuffle from "lodash/shuffle";
 
 interface TrackState {
 	currentTrack: Track | null;
@@ -17,42 +18,43 @@ interface TrackState {
 	setPreviousSong: () => void;
 	setFirstTrack: () => void;
 	setNextSong: () => void;
-	setTrackByIndex: (i: number) => void;
 }
 
-export const usePlayer = create<TrackState>((set) => ({
+export const usePlayer = create<TrackState>((set, get) => ({
 	currentTrack: null,
 	isPlaying: false,
-	playlist: tracks,
+	playlist: [...tracks],
 	audioElement: createRef(),
 	isLoop: false,
 	isRandom: false,
 	setIsLoop: (isLoop) => set({ isLoop }),
-	setIsRandom: (isRandom) => set({ isRandom }),
+	setIsRandom: (isRandom) =>
+		set((state) => ({
+			isRandom,
+			playlist: isRandom ? shuffle(state.playlist) : [...tracks],
+		})),
 	setTrack: (track) => set({ currentTrack: track }),
 	setIsPlaying: (isPlaying) => set({ isPlaying }),
-	setPreviousSong: () =>
-		set((state) => {
-			if (state.currentTrack) {
-				const i = state.playlist.indexOf(state.currentTrack);
-				return {
-					currentTrack:
-						state.playlist[i - 1 < 0 ? state.playlist.length - 1 : i - 1],
-				};
-			}
-			return state;
-		}),
-	setNextSong: () =>
-		set((state) => {
-			if (state.currentTrack) {
-				const i = state.playlist.indexOf(state.currentTrack);
-				return {
-					currentTrack:
-						state.playlist[i + 1 >= state.playlist.length ? 0 : i + 1],
-				};
-			}
-			return state;
-		}),
+	setPreviousSong: () => {
+		const currentTrack = get().currentTrack;
+
+		if (currentTrack) {
+			const playlist = get().playlist;
+			const i = playlist.indexOf(currentTrack);
+			return set({
+				currentTrack: playlist[i - 1 < 0 ? playlist.length - 1 : i - 1],
+			});
+		}
+	},
+	setNextSong: () => {
+		const currentTrack = get().currentTrack;
+		if (currentTrack) {
+			const playlist = get().playlist;
+			const i = playlist.indexOf(currentTrack);
+			return set({
+				currentTrack: playlist[i + 1 >= playlist.length ? 0 : i + 1],
+			});
+		}
+	},
 	setFirstTrack: () => set({ currentTrack: tracks[0] }),
-	setTrackByIndex: (i) => set({ currentTrack: tracks[i] }),
 }));

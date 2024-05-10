@@ -8,14 +8,21 @@ import Lyrics from "./Lyrics";
 import { Speaker } from "../Icons";
 
 const Player: React.FC = () => {
-	const { currentTrack, audioElement, setNextSong, setIsPlaying, isPlaying } =
-		usePlayer((state) => ({
-			currentTrack: state.currentTrack,
-			isPlaying: state.isPlaying,
-			audioElement: state.audioElement,
-			setNextSong: state.setNextSong,
-			setIsPlaying: state.setIsPlaying,
-		}));
+	const {
+		currentTrack,
+		audioElement,
+		setIsPlaying,
+		isPlaying,
+		setNextSong,
+		isLoop,
+	} = usePlayer((state) => ({
+		currentTrack: state.currentTrack,
+		isPlaying: state.isPlaying,
+		audioElement: state.audioElement,
+		setIsPlaying: state.setIsPlaying,
+		setNextSong: state.setNextSong,
+		isLoop: state.isLoop,
+	}));
 
 	const keyHandler = (e: KeyboardEvent) => {
 		const events: Record<string, (() => void) | undefined> = {
@@ -85,6 +92,7 @@ const Player: React.FC = () => {
 				<audio
 					ref={audioElement}
 					src={currentTrack.path}
+					loop={isLoop}
 					onPlay={() => setIsPlaying(true)}
 					onPause={() => setIsPlaying(false)}
 					onEnded={setNextSong}

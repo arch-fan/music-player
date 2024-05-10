@@ -6,51 +6,31 @@ import {
 	Repeat,
 	Random,
 } from "../Icons";
-import AudioBar from "./AudioBar";
 import { usePlayer } from "./track.store";
 import ProgressBar from "./ProgressBar";
-import Speed from "./Speed";
 
 export default function Controls({ className }: { className?: string }) {
 	const {
 		isPlaying,
 		setIsPlaying,
-		setPreviousSong,
 		audioElement,
-		setNextSong,
-		isLoop,
-		setIsLoop,
-		isRandom,
 		setIsRandom,
-		setTrack,
-		playlist,
+		isRandom,
+		setIsLoop,
+		isLoop,
+		setNextSong,
+		setPreviousSong,
 	} = usePlayer((state) => ({
 		isPlaying: state.isPlaying,
 		setIsPlaying: state.setIsPlaying,
-		setPreviousSong: state.setPreviousSong,
-		setNextSong: state.setNextSong,
 		audioElement: state.audioElement,
-		isLoop: state.isLoop,
-		setIsLoop: state.setIsLoop,
-		isRandom: state.isRandom,
 		setIsRandom: state.setIsRandom,
-		setTrack: state.setTrack,
-		playlist: state.playlist,
+		isRandom: state.isRandom,
+		setIsLoop: state.setIsLoop,
+		isLoop: state.isLoop,
+		setNextSong: state.setNextSong,
+		setPreviousSong: state.setPreviousSong,
 	}));
-
-	const handleChange = (to: "previous" | "next") => {
-		if (audioElement.current) {
-			if (isLoop) {
-				audioElement.current.currentTime = 0;
-			} else if (isRandom) {
-				setTrack(playlist[Math.floor(Math.random() * playlist.length)]);
-			} else if (to === "previous") {
-				setPreviousSong();
-			} else if (to === "next") {
-				setNextSong();
-			}
-		}
-	};
 
 	return (
 		audioElement.current && (
@@ -67,10 +47,7 @@ export default function Controls({ className }: { className?: string }) {
 							}`}
 						/>
 					</button>
-					<button
-						onClick={() => handleChange("previous")}
-						className="size-8 lg:size-6"
-					>
+					<button onClick={setPreviousSong} className="size-8 lg:size-6">
 						<PreviousTitle />
 					</button>
 					<button
@@ -79,10 +56,7 @@ export default function Controls({ className }: { className?: string }) {
 					>
 						{isPlaying ? <Pause /> : <Play />}
 					</button>
-					<button
-						className="size-8 lg:size-6"
-						onClick={() => handleChange("next")}
-					>
+					<button className="size-8 lg:size-6" onClick={setNextSong}>
 						<NextTitle />
 					</button>
 					<button onClick={() => setIsLoop(!isLoop)}>

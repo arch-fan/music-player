@@ -1,4 +1,5 @@
 import { users } from "@/data/users";
+import JSConfetti from "js-confetti";
 
 const Profile: React.FC = () => {
 	const username = new URLSearchParams(location.search).get("username");
@@ -6,6 +7,12 @@ const Profile: React.FC = () => {
 	const avatar = username
 		? users[username]
 		: "https://api-private.atlassian.com/users/17ccb93f84c1e2afb591935dec90e986/avatar";
+
+	if (username?.toLocaleLowerCase() === "vicente") {
+		const jsConfetti = new JSConfetti();
+
+		jsConfetti.addConfetti();
+	}
 
 	return (
 		<div className="flex gap-2 items-center">
