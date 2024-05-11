@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
 
 	return (
 		<div className="flex gap-2 items-center">
-			<a href="/music-player">{username ?? "Invitado"}</a>
+			<a href={import.meta.env.BASE_URL}>{username ?? "Invitado"}</a>
 			<img
 				className="size-9 object-cover rounded-full"
 				src={avatar}
