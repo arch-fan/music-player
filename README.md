@@ -8,13 +8,17 @@
     🗃️ <a href="https://github.com/arch-fan/music-player">Repositorio</a>
 </div>
 
+## Antes de nada
+
+Ya que el framework con el que se trabaja minifica el codigo y enruta automaticamente al hacer la build del proyecto, es mejor mirar el codigo fuente de la web, el que esta en el repositorio de Github en vez del compilado. La web esta desplegada en la URL de arriba y al final del documento se explica como desplegar el proyecto y compilarlo.
+
 ## Vision general
 
 El lenguaje de programacion usado es [TypeScript](https://github.com/microsoft/TypeScript) hecho por Microsoft. Es un superset de JavaScript que compila a una salida limpia de JavaScript. Resumiendo, JavaScript con tipado. Utiliza los ficheros con extension `.ts`
 
 Para poder realizar esta web se hace uso del runtime de JavaScript [Node.JS](https://github.com/nodejs/node).
 
-Se ha usado el framework [Astro](https://astro.build/) como base para realizar la web. He elegido Astro porque permite compilar tu web en HTML y CSS con el JavaScript optimizado y enpaquetado. Utiliza los ficheros `ts`.
+Se ha usado el framework [Astro](https://astro.build/) como base para realizar la web. He elegido Astro porque permite compilar tu web en HTML y CSS con el JavaScript optimizado y enpaquetado. Utiliza los ficheros `.astro`.
 
 Para el estilado se ha usado la libreria [TailwindCSS](https://tailwindcss.com/) que permite aplicar estilos CSS mediante clases.
 
