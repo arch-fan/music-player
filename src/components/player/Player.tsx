@@ -7,6 +7,11 @@ import styles from "./Player.module.css";
 import Speed from "./Speed";
 import { usePlayer } from "./track.store";
 
+/**
+ * Componente principal encargado de manejar el elemento audio.
+ * Es el segundo nucleo del reproductor y define como se ve la barra
+ * inferior de reproduccion y sus funcionalidades
+ */
 const Player: React.FC = () => {
 	const {
 		currentTrack,
@@ -15,6 +20,12 @@ const Player: React.FC = () => {
 		isPlaying,
 		setNextSong,
 		isLoop,
+		setPreviousSong,
+		volume,
+		setVolume,
+		setIsLoop,
+		setIsRandom,
+		isRandom,
 	} = usePlayer((state) => ({
 		currentTrack: state.currentTrack,
 		isPlaying: state.isPlaying,
@@ -22,16 +33,36 @@ const Player: React.FC = () => {
 		setIsPlaying: state.setIsPlaying,
 		setNextSong: state.setNextSong,
 		isLoop: state.isLoop,
+		setPreviousSong: state.setPreviousSong,
+		volume: state.volume,
+		setVolume: state.setVolume,
+		setIsLoop: state.setIsLoop,
+		setIsRandom: state.setIsRandom,
+		isRandom: state.isRandom,
 	}));
 
+	/**
+	 * Registra todos los eventos de pulsacion de teclas y
+	 * ejecuta una funcion dependiendo de la tecla pulsada.
+	 *
+	 * Todos los eventos se registran en el objeto event y
+	 * solo se ejecutan si hay una cancion reproduciendose.
+	 */
 	const keyHandler = (e: KeyboardEvent) => {
 		const events: Record<string, (() => void) | undefined> = {
 			" ": () => setIsPlaying(!isPlaying),
+			ArrowRight: setNextSong,
+			ArrowLeft: setPreviousSong,
+			ArrowUp: () => setVolume(volume + 0.1),
+			ArrowDown: () => setVolume(volume - 0.1),
+			y: () => currentTrack && window.open(currentTrack.video, "_blank"),
+			l: () => setIsLoop(!isLoop),
+			s: () => setIsRandom(!isRandom),
 		};
 
 		const fn = events[e.key];
 
-		if (fn) {
+		if (fn && currentTrack) {
 			e.preventDefault();
 			fn();
 		}
@@ -56,6 +87,15 @@ const Player: React.FC = () => {
 		isPlaying ? audio?.play() : audio?.pause();
 	}, [isPlaying]);
 
+	/**
+	 * Cada vez que cambie la cancion se inicia el reproductor.
+	 *
+	 * El motivo por el que no se cambia el estado para reproducirlo
+	 * es porque el evento de onEnded pausa la cancion mas tarde que
+	 * el estado al detectar el cambio de cancion, por lo que aqui
+	 * el isPlaying cambiaria a true y despues a false al detectar
+	 * que se ha acabado la cancion.
+	 */
 	useEffect(() => {
 		audioElement.current?.play();
 	}, [currentTrack]);

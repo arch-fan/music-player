@@ -3,25 +3,20 @@ import { formatTime } from "@/utils/time";
 import { Pause, Play, Youtube } from "react-icons";
 import { usePlayer } from "./track.store";
 
+/**
+ * Componente que renderiza toda la lista de canciones, estas vienen de
+ * una constante llamada tracks.
+ */
 export default function Playlist() {
 	const setTrack = usePlayer((state) => state.setTrack);
 	const currentTrack = usePlayer((state) => state.currentTrack);
 	const isPlaying = usePlayer((state) => state.isPlaying);
-	const setIsPlaying = usePlayer((state) => state.setIsPlaying);
-
-	const handlePlay = (track: Track) => {
-		if (track === currentTrack) {
-			setIsPlaying(!isPlaying);
-		} else {
-			setTrack(track);
-		}
-	};
 
 	return (
 		<div className="grid grid-cols-1 gap-2">
 			{tracks.map((track) => (
 				<button
-					onClick={() => handlePlay(track)}
+					onClick={() => setTrack(track)}
 					className={`
             			flex h-16 gap-2 rounded p-2 relative group
             			before:content-[''] before:absolute before:h-full before:w-1

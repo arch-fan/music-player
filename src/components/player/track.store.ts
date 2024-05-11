@@ -9,17 +9,29 @@ interface TrackState {
 	playlist: Track[];
 	isPlaying: boolean;
 	audioElement: React.RefObject<HTMLAudioElement>;
+	volume: number;
 	isLoop: boolean;
 	isRandom: boolean;
 	setIsLoop: (isLoop: boolean) => void;
 	setIsRandom: (isRandom: boolean) => void;
 	setTrack: (track: Track) => void;
+	setVolume: (volume: number) => void;
 	setIsPlaying: (isPlaying: boolean) => void;
 	setPreviousSong: () => void;
 	setFirstTrack: () => void;
 	setNextSong: () => void;
 }
 
+/**
+ * El corazon de la web. Maneja todas las canciones y la configuracion
+ * del repropductor, como su comportamiento.
+ *
+ * Es el estado global del reproductor. Define tanto sus propiedades como
+ * las funciones que actualizan dichas propiedades en el interfaz situado
+ * encima de este comentario.
+ *
+ * @see https://github.com/pmndrs/zustand
+ */
 export const usePlayer = create<TrackState>((set, get) => ({
 	currentTrack: null,
 	isPlaying: false,
@@ -27,6 +39,7 @@ export const usePlayer = create<TrackState>((set, get) => ({
 	audioElement: createRef(),
 	isLoop: false,
 	isRandom: false,
+	volume: 0.5,
 	setIsLoop: (isLoop) => set({ isLoop }),
 	setIsRandom: (isRandom) =>
 		set((state) => ({
@@ -57,4 +70,6 @@ export const usePlayer = create<TrackState>((set, get) => ({
 		}
 	},
 	setFirstTrack: () => set({ currentTrack: tracks[0] }),
+	setVolume: (volume) =>
+		set({ volume: volume < 0 ? 0 : volume > 1 ? 1 : volume }),
 }));

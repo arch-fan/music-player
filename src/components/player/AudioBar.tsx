@@ -5,13 +5,28 @@ interface Props {
 	className?: string;
 }
 
+/**
+ * Componente de la barra de audio, encargado de subir y bajar el volumen
+ */
 export default function AudioBar({ className }: Props) {
 	const audioElement = usePlayer((state) => state.audioElement);
+	const volume = usePlayer((state) => state.volume);
+	const setVolume = usePlayer((state) => state.setVolume);
 
-	const [volume, setVolume] = useState(
-		Number(localStorage.getItem("volume")) || 0.5,
-	);
+	/**
+	 * Para guardar el volumen entre recargas de la pagina
+	 * lo guardamos en el localStorage, y si detecta
+	 * que no hay ninguno, lo inicializamos a 0.5 en el estado global
+	 */
+	useEffect(() => {
+		const volumeItem = localStorage.getItem("volume");
+		setVolume(volumeItem ? Number(volumeItem) : volume);
+	}, []);
 
+	/**
+	 * Este efecto se encarga de sincronizar nuestro estado con el volumen
+	 * del elemento del audio y guardar el volumen actual en el localStorage
+	 */
 	useEffect(() => {
 		if (audioElement.current) {
 			localStorage.setItem("volume", volume.toString());

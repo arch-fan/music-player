@@ -4,16 +4,26 @@ import { usePlayer } from "./track.store";
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {}
 
+/**
+ * Boton de play grande para la estacion. Si se pulsa sin que haya
+ * canciones se va a reproducir la primera, y tambien puedes parar la reproduccion
+ */
 const Play: React.FC<Props> = ({ className, onClick, ...props }) => {
 	const isPlaying = usePlayer((state) => state.isPlaying);
 	const setFirstTrack = usePlayer((state) => state.setFirstTrack);
 	const setIsPlaying = usePlayer((state) => state.setIsPlaying);
+	const currentTrack = usePlayer((state) => state.currentTrack);
 
+	/**
+	 * Si esta sonando, pausamos la cancion simplemente. Si no hay cancion
+	 * se va a reproducir la primera de la playlist.
+	 */
 	const handleClick = () => {
-		if (isPlaying) setIsPlaying(false);
-		else {
+		if (!currentTrack) {
 			setFirstTrack();
 			setIsPlaying(true);
+		} else {
+			setIsPlaying(!isPlaying);
 		}
 	};
 

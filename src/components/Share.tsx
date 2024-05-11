@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Share, Facebook } from "react-icons";
+import { Facebook, Share } from "react-icons";
 import Modal from "./Modal";
 
 export default () => {

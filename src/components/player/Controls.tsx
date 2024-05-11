@@ -9,6 +9,11 @@ import {
 import ProgressBar from "./ProgressBar";
 import { usePlayer } from "./track.store";
 
+/**
+ * Componente encargado de manejar todos los controles del reproductor,
+ * tanto para avanzar cancion como para retroceder, shuffle, etc...
+ * (No incluye la barra de progreso)
+ */
 export default function Controls({ className }: { className?: string }) {
 	const {
 		isPlaying,

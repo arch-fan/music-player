@@ -2,11 +2,22 @@ import { formatTime } from "@/utils/time";
 import { useEffect, useState } from "react";
 import { usePlayer } from "./track.store";
 
+/**
+ * Barra de progreso para la cancion. Se puede interaccionar con ella.
+ * Tiene un div encima para darle estilo.
+ */
 export default function ProgressBar({ className }: { className?: string }) {
 	const audioElement = usePlayer((state) => state.audioElement);
 
+	/**
+	 * Estado para manejar el tiempo actual de la cancion
+	 */
 	const [currentTime, setCurrentTime] = useState(0);
 
+	/**
+	 * Efecto para sincronizar el tiempo actual de la cancion
+	 * con el estado currentTime
+	 */
 	useEffect(() => {
 		const updateTime = () => {
 			if (audioElement.current)
