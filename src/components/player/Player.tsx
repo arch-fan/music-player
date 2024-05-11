@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { usePlayer } from "./track.store";
-import Controls from "./Controls";
-import styles from "./Player.module.css";
-import AudioBar from "./AudioBar";
-import Speed from "./Speed";
-import Lyrics from "./Lyrics";
 import { Speaker } from "../Icons";
+import AudioBar from "./AudioBar";
+import Controls from "./Controls";
+import Lyrics from "./Lyrics";
+import styles from "./Player.module.css";
+import Speed from "./Speed";
+import { usePlayer } from "./track.store";
 
 const Player: React.FC = () => {
 	const {

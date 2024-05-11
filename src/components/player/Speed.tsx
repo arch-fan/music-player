@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePlayer } from "./track.store";
 
 export default function Speed({ className }: { className?: string }) {

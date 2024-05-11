@@ -1,36 +1,37 @@
 {
-  "name": "music-player",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "upgrade": "pnpx @astrojs/upgrade"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/react": "^3.3.1",
-    "@astrojs/tailwind": "^5.1.0",
-    "@iconify-json/mdi": "^1.1.66",
-    "@types/react": "^18.2.79",
-    "@types/react-dom": "^18.2.25",
-    "astro": "^4.7.0",
-    "astro-icon": "^1.1.0",
-    "js-confetti": "^0.12.0",
-    "lodash": "^4.17.21",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sharp": "^0.33.3",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5",
-    "zustand": "^4.5.2"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@iconify/react": "^4.1.1",
-    "@types/lodash": "^4.17.1"
-  }
+	"name": "music-player",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"upgrade": "pnpx @astrojs/upgrade",
+		"check": "biome check --apply src"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.5.10",
+		"@astrojs/react": "^3.3.1",
+		"@astrojs/tailwind": "^5.1.0",
+		"@iconify-json/mdi": "^1.1.66",
+		"@types/react": "^18.2.79",
+		"@types/react-dom": "^18.2.25",
+		"astro": "^4.7.0",
+		"astro-icon": "^1.1.0",
+		"js-confetti": "^0.12.0",
+		"lodash": "^4.17.21",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"sharp": "^0.33.3",
+		"tailwindcss": "^3.4.3",
+		"typescript": "^5.4.5",
+		"zustand": "^4.5.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.7.3",
+		"@iconify/react": "^4.1.1",
+		"@types/lodash": "^4.17.1"
+	}
 }

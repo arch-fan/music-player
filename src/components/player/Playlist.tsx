@@ -1,8 +1,8 @@
-import { Pause, Play } from "../Icons";
-import { tracks, type Track } from "@/data/playlist";
-import { usePlayer } from "./track.store";
+import { type Track, tracks } from "@/data/playlist";
 import { formatTime } from "@/utils/time";
+import { Pause, Play } from "../Icons";
 import { Youtube } from "../Icons";
+import { usePlayer } from "./track.store";
 
 export default function Playlist() {
 	const setTrack = usePlayer((state) => state.setTrack);

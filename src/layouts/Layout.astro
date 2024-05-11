@@ -1,6 +1,4 @@
 ---
-import Navbar from "@/components/Navbar.astro";
-
 interface Props {
   title: string;
   description: string;
@@ -17,7 +15,6 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/music-player/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <title>{title} | Player.io</title>
   </head>
   <body>

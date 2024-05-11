@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { Play as PlayIcon, Pause as PauseIcon } from "../Icons";
+import { Pause as PauseIcon, Play as PlayIcon } from "../Icons";
 import { usePlayer } from "./track.store";
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {}

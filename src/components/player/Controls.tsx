@@ -1,13 +1,13 @@
 import {
-	PreviousTitle,
 	NextTitle,
-	Play,
 	Pause,
-	Repeat,
+	Play,
+	PreviousTitle,
 	Random,
+	Repeat,
 } from "../Icons";
-import { usePlayer } from "./track.store";
 import ProgressBar from "./ProgressBar";
+import { usePlayer } from "./track.store";
 
 export default function Controls({ className }: { className?: string }) {
 	const {

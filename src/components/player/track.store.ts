@@ -1,8 +1,8 @@
 import type { Track } from "@/data/playlist";
-import { create } from "zustand";
 import { tracks } from "@/data/playlist";
-import { createRef } from "react";
 import shuffle from "lodash/shuffle";
+import { createRef } from "react";
+import { create } from "zustand";
 
 interface TrackState {
 	currentTrack: Track | null;
