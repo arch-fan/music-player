@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Command {
+  icon: string;
+  description: string;
+}
+
+const commands: Command[] = [
+  {
+    icon: "arrow-up",
+    description: "Subir volumen",
+  },
+  {
+    icon: "arrow-down",
+    description: "Bajar volumen",
+  },
+  {
+    icon: "arrow-left",
+    description: "Cancion anterior",
+  },
+  {
+    icon: "arrow-right",
+    description: "Cancion siguiente",
+  },
+  {
+    icon: "keyboard-space",
+    description: "Reproducir/pausar la cancion",
+  },
+  {
+    icon: "letter-s",
+    description: "Alternar shuffle",
+  },
+  {
+    icon: "letter-l",
+    description: "Alternar bucle",
+  },
+  {
+    icon: "letter-y",
+    description: "Ir a video",
+  },
+];
+---
+
+<div class="hidden lg:flex flex-col gap-2">
+  <h3 class="text-xl font-bold">Comandos</h3>
+  <ul class="grid grid-cols-4 place-items-center gap-4">
+    {
+      commands.map(({ icon, description }) => (
+        <li class="flex gap-2 items-center">
+          <Icon class="font-bold size-7" name={`mdi:${icon}`} />
+          <p>{description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</div>

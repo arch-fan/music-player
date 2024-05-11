@@ -1,4 +1,4 @@
-import { type Track, tracks } from "@/data/playlist";
+import { tracks } from "@/data/playlist";
 import { formatTime } from "@/utils/time";
 import { Pause, Play, Youtube } from "react-icons";
 import { usePlayer } from "./track.store";

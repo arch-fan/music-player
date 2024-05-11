@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import Player from "@/components/player/Player";
 import Playlist from "@/components/player/Playlist";
 import Navbar from "@/components/Navbar.astro";
+import Commands from "@/components/Commands.astro";
 ---
 
 <Layout title="Inicio" description="Pagina de inicio">
@@ -13,6 +14,7 @@ import Navbar from "@/components/Navbar.astro";
     <section class="px-2 mt-8 max-w-6xl m-auto w-full flex flex-col gap-8">
       <h2 class="font-bold text-2xl">Escucha las canciones de la estación:</h2>
       <Playlist client:load />
+      <Commands />
     </section>
   </main>
   <Player client:idle />
