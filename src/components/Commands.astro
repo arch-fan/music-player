@@ -42,16 +42,13 @@ const commands: Command[] = [
 ];
 ---
 
-<div class="hidden lg:flex flex-col gap-2">
-  <h3 class="text-xl font-bold">Comandos</h3>
-  <ul class="grid grid-cols-4 place-items-center gap-4">
-    {
-      commands.map(({ icon, description }) => (
-        <li class="flex gap-2 items-center">
-          <Icon class="font-bold size-7" name={`mdi:${icon}`} />
-          <p>{description}</p>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+<ul class="hidden lg:grid grid-cols-4 place-items-center gap-4">
+  {
+    commands.map(({ icon, description }) => (
+      <li class="flex gap-2 items-center">
+        <Icon class="font-bold size-7" name={`mdi:${icon}`} />
+        <p>{description}</p>
+      </li>
+    ))
+  }
+</ul>
