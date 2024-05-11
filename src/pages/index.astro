@@ -2,6 +2,8 @@
 import Layout from "@/layouts/Layout.astro";
 import { users } from "@/data/users";
 import { Image } from "astro:assets";
+
+const { BASE_URL } = import.meta.env;
 ---
 
 <Layout title="Iniciar sesion" description="Iniciar sesion">
@@ -15,7 +17,7 @@ import { Image } from "astro:assets";
           Object.keys(users).map((user) => (
             <a
               class="rounded-full hover:bg-neutral-200 transition-all border p-2 items-center flex gap-2 w-full"
-              href={`/music-player/station?username=${user}`}
+              href={`${BASE_URL}/station?username=${user}`}
             >
               <Image
                 src={users[user]}
@@ -31,7 +33,7 @@ import { Image } from "astro:assets";
       </div>
       <a
         class="border text-center rounded-full p-2 hover:bg-neutral-200 transition-all"
-        href=`${import.meta.env.BASE_URL}/station`
+        href=`${BASE_URL}/station`
       >
         O como invitado
       </a>
