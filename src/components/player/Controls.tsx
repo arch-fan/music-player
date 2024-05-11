@@ -5,7 +5,7 @@ import {
 	PreviousTitle,
 	Random,
 	Repeat,
-} from "../Icons";
+} from "react-icons";
 import ProgressBar from "./ProgressBar";
 import { usePlayer } from "./track.store";
 

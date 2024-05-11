@@ -1,6 +1,6 @@
 import type { Track } from "@/data/playlist";
 import { useEffect, useState } from "react";
-import { Music } from "../Icons";
+import { Music } from "react-icons";
 import Modal from "../Modal";
 
 interface Props {

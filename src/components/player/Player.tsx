@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Speaker } from "../Icons";
+import { Speaker } from "react-icons";
 import AudioBar from "./AudioBar";
 import Controls from "./Controls";
 import Lyrics from "./Lyrics";

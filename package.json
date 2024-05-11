@@ -31,7 +31,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
-		"@iconify/react": "^4.1.1",
 		"@types/lodash": "^4.17.1"
 	}
 }

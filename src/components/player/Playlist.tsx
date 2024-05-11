@@ -1,7 +1,6 @@
 import { type Track, tracks } from "@/data/playlist";
 import { formatTime } from "@/utils/time";
-import { Pause, Play } from "../Icons";
-import { Youtube } from "../Icons";
+import { Pause, Play, Youtube } from "react-icons";
 import { usePlayer } from "./track.store";
 
 export default function Playlist() {
