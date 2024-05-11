@@ -2,7 +2,11 @@ import { users } from "@/data/users";
 import JSConfetti from "js-confetti";
 
 const Profile: React.FC = () => {
-	const username = new URLSearchParams(location.search).get("username");
+	let username = new URLSearchParams(location.search).get("username");
+
+	if (username && !(username in users)) {
+		username = null;
+	}
 
 	const avatar = username
 		? users[username]
